@@ -9,6 +9,15 @@ Page({
   },
 
   /**
+   * 点击跳转
+   */
+  onTap: function () {
+    wx.redirectTo({
+      url: '../posts/posts',
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
