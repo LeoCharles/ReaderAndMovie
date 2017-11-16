@@ -1,0 +1,57 @@
+<!--pages/posts/posts.wxml-->
+<view class="container">
+  <!-- 轮播图   -->
+  <swiper indicator-dots="true" circular="true" autoplay="true">
+    <swiper-item><image src="/images/iqiyi.png"></image></swiper-item>
+    <swiper-item><image src="/images/vr.png"></image></swiper-item>
+    <swiper-item><image src="/images/wx.png"></image></swiper-item>
+  </swiper>
+  <!-- 文章列表  -->
+  <view class="post-container">
+    <view class="post-author-date">
+      <image class="post-author" src="/images/avatar/1.png"></image> 
+      <text class="post-date">Nov 25 2017</text>
+    </view>
+    <text class="post-title">正是虾肥蟹壮时</text>
+    <image class="post-image" src="/images/post/crab.png"></image>
+    <text class="post-content">正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时</text>
+    <view class="post-like">
+      <image class="post-like-image" src="/images/icon/chat.png"></image>
+      <text class="post-like-font">92</text>
+      <image class="post-like-image"  src="/images/icon/view.png"></image>
+      <text class="post-like-font">65</text>
+    </view>
+  </view>
+
+  <view class="post-container">
+    <view class="post-author-date">
+      <image class="post-author" src="/images/avatar/2.png"></image> 
+      <text class="post-date">Nov 22 2017</text>
+    </view>
+    <text class="post-title">正是虾肥蟹壮时</text>
+    <image class="post-image" src="/images/post/bl.png"></image>
+    <text class="post-content">正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时</text>
+    <view class="post-like">
+      <image class="post-like-image" src="/images/icon/chat.png"></image>
+      <text class="post-like-font">92</text>
+      <image class="post-like-image"  src="/images/icon/view.png"></image>
+      <text class="post-like-font">65</text>
+    </view>
+  </view>
+
+  <view class="post-container">
+    <view class="post-author-date">
+      <image class="post-author" src="/images/avatar/3.png"></image> 
+      <text class="post-date">Nov 15 2017</text>
+    </view>
+    <text class="post-title">正是虾肥蟹壮时</text>
+    <image class="post-image" src="/images/post/vr.png"></image>
+    <text class="post-content">正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时正是虾肥蟹壮时</text>
+    <view class="post-like">
+      <image class="post-like-image" src="/images/icon/chat.png"></image>
+      <text class="post-like-font">92</text>
+      <image class="post-like-image"  src="/images/icon/view.png"></image>
+      <text class="post-like-font">65</text>
+    </view>
+  </view>
+</view>
