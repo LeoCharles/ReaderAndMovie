@@ -1,4 +1,8 @@
 /* pages/posts/posts.wxss */
+/* 引用文章列表样式  */
+@import "post-item/post-item-template.wxss";
+
+/* 轮播图样式  */
 swiper {
   width: 100%;
   height: 600rpx;
@@ -7,62 +11,4 @@ swiper image {
   width: 100%;
   height: 600rpx;
 }
-.post-container {
-  display: flex;
-  flex-direction: column;
-  margin-top: 20rpx;
-  margin-bottom: 40rpx;
-  padding: 10px 0;
-  background-color: #fff;
-  border-top: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
-}
-.post-author-date {
-  margin: 0 0 10px 10px;
-}
-.post-author {
-  width: 60rpx;
-  height: 60rpx;
-  vertical-align: middle;
-}
-.post-date {
-  margin-left: 20rpx;
-  vertical-align: middle;
-  font-size: 26rpx;
-}
-.post-title {
-  margin-left: 10px;
-  margin-bottom: 10px;
-  font-size: 34rpx;
-  font-weight: 600;
-  color: #333;
-}
-.post-image {
-  margin: 0 auto;
-  width: 100%;
-  height: 340rpx;
-}
-.post-content {
-  margin: 20rpx;
-  line-height: 40rpx;
-  font-size: 16px;
-  text-indent: 2em;
-  text-align:justify;
-  letter-spacing: 2rpx;
-}
-.post-like {
-  flex-direction: row;
-  line-height: 16px;
-  font-size: 13px;
-  margin-left: 10px;
-}
-.post-like-image {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-.post-like-font {
-  margin-right: 20px;
-  vertical-align: middle;
-}
+
