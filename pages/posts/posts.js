@@ -4,11 +4,12 @@ var postData = require('../../data/posts-data.js');
 Page({
 
   data: {
-    
+
   },
 
   onLoad: function (options) {
     // 从服务器获取数据后给data赋值
+    console.log(options)
     this.setData({
       postList: postData.postList
     });
@@ -20,6 +21,7 @@ Page({
     wx.navigateTo({
       url: 'post-detail/post-detail?id=' + postId
     })
+    
   },
 
   // 点击轮播图片，冒泡到容器

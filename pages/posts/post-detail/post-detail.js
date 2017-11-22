@@ -10,6 +10,7 @@ Page({
   },
   
   onLoad: function (options) {
+
     var postId = options.id;
     var postData = postsData.postList[postId];
     this.setData({

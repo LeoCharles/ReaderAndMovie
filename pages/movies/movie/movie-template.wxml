@@ -1,0 +1,9 @@
+<import src="../stars/stars-template.wxml" />
+
+<template name="movieTemplate">
+  <view class="movie-container">
+    <image class="movie-img" src="/images/p1.jpg"></image>
+    <text class="movie-title">正义联盟</text>
+    <template is="starsTemplate" />
+  </view>
+</template>
