@@ -1,5 +1,6 @@
   // pages/posts/post-detail/post-detail.js
 var postsData = require('../../../data/posts-data.js');
+var app = getApp();
 
 Page({
 
@@ -31,8 +32,52 @@ Page({
       postsCollected[postId] = false;
       wx.setStorageSync('posts_collected', postsCollected);  
     }
-    
+
+    // 判断全局音乐播放状态
+    if (app.globalData.g_isPlayingMusic && app.globalData.g_currentMusicPostId == postId) {
+      this.setData({
+        isPlayingMusic: true
+      })
+    }
+
+    // 监听音乐播放
+    this.setMusicMonitor();
+
   },
+
+  // 监听音乐播放函数
+  setMusicMonitor: function () {
+    var _this = this;
+    // 监听音乐播放
+    wx.onBackgroundAudioPlay(function(e) {
+      if (app.globalData.g_currentMusicPostId === _this.data.currentPostId) {
+        _this.setData({
+          isPlayingMusic: true
+        })
+      }
+      // 修改全局音乐播放状态
+      app.globalData.g_isPlayingMusic = true;
+    }),
+    // 监听音乐暂停
+    wx.onBackgroundAudioPause(function(e) {
+      if (app.globalData.g_currentMusicPostId == _this.data.currentPostId) {
+        _this.setData({
+          isPlayingMusic: false
+        })
+      }
+      // 修改全局音乐播放状态
+      app.globalData.g_isPlayingMusic = false;
+    }),
+    // 监听音乐停止
+    wx.onBackgroundAudioStop(function () {
+      _this.setData({
+        isPlayingMusic: false
+      })
+      // 修改全局音乐播放状态
+      app.globalData.g_isPlayingMusic = false;
+    })
+  },
+ 
 
   // 收藏
   onCollectionTap: function (e) {
@@ -84,19 +129,23 @@ Page({
     var isPlayingMusic = this.data.isPlayingMusic;
     if (isPlayingMusic) {
       wx.pauseBackgroundAudio();
-      this.setData({isPlayingMusic:false});
+      this.setData({
+        isPlayingMusic:false
+      });
+      app.globalData.g_isPlayingMusic = false;
     } else {
       wx.playBackgroundAudio({
         title: postData.music.title,
         dataUrl: postData.music.url,
         coverImgUrl: postData.music.coverImg
       })
-      this.setData({ isPlayingMusic: true});
+      this.setData({
+        isPlayingMusic: true
+      });
+      app.globalData.g_currentMusicPostId = this.data.currentPostId;
+      app.globalData.g_isPlayingMusic = true;
     }
-    
-  }
+  },
 
   
-
-
 })
