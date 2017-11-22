@@ -3,16 +3,16 @@
 <template name="movieListTemplate">
   <view class="movie-list-container">
     <view class="movie-head">
-      <text class="slogan">正在热映</text>
+      <text class="slogan">{{categoryTitle}}</text>
       <view class="more">
         <text class="more-text">更多</text>
         <image class="more-img" src="/images/icon/arrow-right.png"></image>
       </view>
     </view>
     <view class="movies-container">
-      <template is="movieTemplate"></template>
-      <template is="movieTemplate"></template>
-      <template is="movieTemplate"></template>
+      <block wx:for="{{movies}}" wx:for-item="movie">
+        <template is="movieTemplate" data="{{...movie}}"/>
+      </block>
     </view>
 
   </view>

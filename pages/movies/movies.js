@@ -1,10 +1,13 @@
 // pages/movies/movies.js
+var util = require('../../utils/util.js');
 var app = getApp();
 
 Page({
 
   data: {
-  
+    inTheaters: {},
+    comingSoon: {},
+    top250: {}
   },
 
   onLoad: function (options) {
@@ -13,14 +16,14 @@ Page({
     var comingSoonUrl = app.globalData.doubanBase + '/v2/movie/coming_soon' + '?start=0&count=3';
     var top250Url = app.globalData.doubanBase + '/v2/movie/top250' + '?start=0&count=3';
     
-    this.getMovieListData(inTheatersUrl);
-    this.getMovieListData(comingSoonUrl);
-    this.getMovieListData(top250Url);
+    this.getMovieListData(inTheatersUrl, 'inTheaters', '正在热映');
+    this.getMovieListData(comingSoonUrl, 'comingSoon', '即将上映');
+    this.getMovieListData(top250Url, 'top250', 'TOP250');
 
   },
 
   // 获取豆瓣电影数据
-  getMovieListData: function (url) {
+  getMovieListData: function (url, settedKey, categoryTitle) {
     var _this = this;
     wx.request({
       url: url,
@@ -29,7 +32,7 @@ Page({
         'content-type': 'json'
       },
       success: function (res) {
-        _this.processDoubanData(res.data)
+        _this.processDoubanData(res.data, settedKey, categoryTitle)
       },
       fail: function (err) {
         console.log('fail')
@@ -38,11 +41,26 @@ Page({
   },
 
   // 处理豆瓣数据
-  processDoubanData: function(moviesDouban) {
+  processDoubanData: function (moviesDouban, settedKey, categoryTitle) {
     var movies = [];
     for(var idx in moviesDouban.subjects) {
       var subject = moviesDouban.subjects[idx];
+      var temp = {
+        title: subject.title,
+        coverageUrl: subject.images.large,
+        average: subject.rating.average,
+        stars: util.coverToStarsArray(subject.rating.stars),
+        movieId: subject.id
+      };
+      movies.push(temp);
     }
+    // 动态赋值
+    var readyData = {};
+    readyData[settedKey] = {
+      movies: movies,
+      categoryTitle: categoryTitle
+    };
+    this.setData(readyData);
   },
 
 
