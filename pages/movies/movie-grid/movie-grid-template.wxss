@@ -1,0 +1,11 @@
+@import "../movie/movie-template.wxss";
+
+/* scroll-view组件中flex无效,所以用float */
+
+.grid-container {
+  margin: 40rpx 12rpx;
+}
+.single-movie-container { 
+  float: left; 
+  margin-bottom: 40rpx; 
+}

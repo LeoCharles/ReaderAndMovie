@@ -10,6 +10,7 @@ Page({
     top250: {}
   },
 
+  // 页面初始化
   onLoad: function (options) {
     // 请求豆瓣数据 注意：'content-type'不要设置为application/json或空
     var inTheatersUrl = app.globalData.doubanBase + '/v2/movie/in_theaters' + '?start=0&count=3';
@@ -19,10 +20,9 @@ Page({
     this.getMovieListData(inTheatersUrl, 'inTheaters', '正在热映');
     this.getMovieListData(comingSoonUrl, 'comingSoon', '即将上映');
     this.getMovieListData(top250Url, 'top250', 'TOP250');
-
   },
 
-  // 获取豆瓣电影数据
+  // 请求豆瓣电影数据
   getMovieListData: function (url, settedKey, categoryTitle) {
     var _this = this;
     wx.request({
@@ -62,6 +62,12 @@ Page({
     };
     this.setData(readyData);
   },
-
-
+  
+  // 加载更多
+  onMoreTap: function(event) {
+    var category = event.currentTarget.dataset.category;
+    wx.navigateTo({
+      url: 'more-movie/more-movie?category=' + category,
+    })
+  },
 })

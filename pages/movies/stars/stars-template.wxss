@@ -1,5 +1,6 @@
 /* pages/movies/stars/stars.wxss */
 .stars-container {
+  width: 200rpx;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -8,7 +9,7 @@
   display: flex;
   flex-direction: row;
   height: 18rpx;
-  margin-right: 24rpx;
+  margin-right: 28rpx;
   margin-top: 6rpx;
 }
 .stars image {
