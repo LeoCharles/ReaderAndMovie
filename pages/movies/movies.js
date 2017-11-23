@@ -7,7 +7,9 @@ Page({
   data: {
     inTheaters: {},
     comingSoon: {},
-    top250: {}
+    top250: {},
+    containerShow: true,
+    searchPannelShow: false
   },
 
   // 页面初始化
@@ -70,4 +72,29 @@ Page({
       url: 'more-movie/more-movie?category=' + category,
     })
   },
+
+  // 聚焦搜索框
+  onBindFocus: function (event) {
+    this.setData({
+      containerShow: false,
+      searchPannelShow: true
+    })
+  },
+
+  // 点击关闭
+  onCancelImgTap: function (event) {
+    this.setData({
+      containerShow: true,
+      searchPannelShow: false
+    })
+  },
+
+  // 搜索
+  onBindConfirm: function (event) {
+    var text = event.detail.value;
+    var seachUrl = app.globalData.doubanBase + "/v2/movie/search?q=" + text;
+    this.getMovieListData(seachUrl, 'searchResult', '');
+  },
+
+
 })
