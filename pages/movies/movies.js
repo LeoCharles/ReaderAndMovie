@@ -8,6 +8,7 @@ Page({
     inTheaters: {},
     comingSoon: {},
     top250: {},
+    searchResult: {},
     containerShow: true,
     searchPannelShow: false
   },
@@ -96,5 +97,12 @@ Page({
     this.getMovieListData(seachUrl, 'searchResult', '');
   },
 
-
+  // 点击查看电影详情
+  onMovieTap: function (event) {
+    // 注意movieId会被转成小写movieid
+    var movieId = event.currentTarget.dataset.movieid;
+    wx.navigateTo({
+      url: 'movie-detail/movie-detail?id=' + movieId,
+    })
+  },
 })

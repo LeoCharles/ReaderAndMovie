@@ -61,7 +61,7 @@ Page({
       wx.showNavigationBarLoading();
     } else {
       wx.showToast({
-        title: '没有数据了',
+        title: '没有更多数据了',
         icon: 'success',
         duration: 1000
       })
@@ -70,10 +70,12 @@ Page({
 
   // 下拉刷新
   onPullDownRefresh: function (event) {
-    var refreshUrl = this.data.requestUrl + '?start=00&count=20';
+    var refreshUrl = this.data.requestUrl + '?start=0&count=20';
     this.setData({
       movies: {},
-      isEmpty: true
+      isEmpty: true,
+      totalCount: 0,
+      total: 0
     })
     util.http(refreshUrl, this.processDoubanData);
     // 显示导航栏加载动画
