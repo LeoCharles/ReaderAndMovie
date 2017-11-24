@@ -91,7 +91,7 @@ Page({
         title: subject.title,
         coverageUrl: subject.images.large,
         average: subject.rating.average,
-        stars: util.coverToStarsArray(subject.rating.stars),
+        stars: util.convertToStarsArray(subject.rating.stars),
         movieId: subject.id
       };
       movies.push(temp);
@@ -118,6 +118,15 @@ Page({
     wx.hideNavigationBarLoading();
     // 停止下拉刷新动画
     wx.stopPullDownRefresh();
+  },
+
+  // 点击查看电影详情
+  onMovieTap: function (event) {
+    // 注意movieId会被转成小写movieid
+    var movieId = event.currentTarget.dataset.movieid;
+    wx.navigateTo({
+      url: '../movie-detail/movie-detail?id=' + movieId,
+    })
   },
 
 })

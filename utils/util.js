@@ -1,5 +1,5 @@
 // 将豆瓣电影评分 转成[1,1,1,0,0]这样的数组
-function coverToStarsArray(stars) {
+function convertToStarsArray(stars) {
   var num = stars.toString().substring(0, 1);
   var half = stars.toString().substring(1);
   var array = [];
@@ -14,6 +14,28 @@ function coverToStarsArray(stars) {
     }
   }
   return array;
+}
+
+// 将演员表数组用'/'分隔
+function convertToCastString(casts) {
+  var castsjoin = '';
+  casts.forEach(function(item, idx) {
+    castsjoin += item.name + ' / ';
+  })
+  return castsjoin.substring(0, castsjoin.length-2);
+}
+
+// 演员图片、名称
+function convertToCastInfo(casts) {
+  var castsArray = [];
+  casts.forEach(function (item, idx) {
+    var cast = {
+      img: item.avatars ? item.avatars.large : '',
+      name: item.name
+    };
+    castsArray.push(cast);
+  })
+  return castsArray;
 }
 
 // 网络请求
@@ -36,6 +58,8 @@ function http(url, callBack) {
 
 
 module.exports = {
-  coverToStarsArray: coverToStarsArray,
+  convertToStarsArray: convertToStarsArray,
+  convertToCastString: convertToCastString,
+  convertToCastInfo: convertToCastInfo,
   http: http
 }
