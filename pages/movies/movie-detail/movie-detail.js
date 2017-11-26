@@ -50,15 +50,14 @@ Page({
     this.setData({
       movie:movie
     })
-    console.log(movie)
   },
 
   // 点击查看图片
   viewMoviePostImg: function (event) {
     var src = event.currentTarget.dataset.src;
     wx.previewImage({
-      urls: [src],
-      current: src
+      urls: [src], // 需要预览图片http链接列表
+      current: src // 当前需要显示的http链接
     })
   },
 
