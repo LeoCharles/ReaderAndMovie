@@ -9,7 +9,6 @@ Page({
 
   onLoad: function (options) {
     // 从服务器获取数据后给data赋值
-    console.log(options)
     this.setData({
       postList: postData.postList
     });

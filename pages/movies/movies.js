@@ -13,13 +13,13 @@ Page({
     searchPannelShow: false
   },
 
-  // 页面初始化
+  // 监听页面加载
   onLoad: function (options) {
-    // 请求豆瓣数据 注意：'content-type'不要设置为application/json或空
+    // 请求地址
     var inTheatersUrl = app.globalData.doubanBase + '/v2/movie/in_theaters' + '?start=0&count=3';
     var comingSoonUrl = app.globalData.doubanBase + '/v2/movie/coming_soon' + '?start=0&count=3';
     var top250Url = app.globalData.doubanBase + '/v2/movie/top250' + '?start=0&count=3';
-    
+    // 发起请求
     this.getMovieListData(inTheatersUrl, 'inTheaters', '正在热映');
     this.getMovieListData(comingSoonUrl, 'comingSoon', '即将上映');
     this.getMovieListData(top250Url, 'top250', 'TOP250');
@@ -32,13 +32,14 @@ Page({
       url: url,
       method: 'GET',
       header: {
-        'content-type': 'json'
+        'content-type': 'json' // 注意：不要设置为application/json或空
       },
       success: function (res) {
-        _this.processDoubanData(res.data, settedKey, categoryTitle)
+        // 请求成功的回调
+        _this.processDoubanData(res.data, settedKey, categoryTitle);
       },
       fail: function (err) {
-        console.log('fail')
+        console.log('fail');
       }
     })
   },
@@ -57,7 +58,7 @@ Page({
       };
       movies.push(temp);
     }
-    // 动态赋值
+    // 根据settedKey动态赋值
     var readyData = {};
     readyData[settedKey] = {
       movies: movies,
@@ -106,5 +107,4 @@ Page({
     })
   },
 
-  
 })
